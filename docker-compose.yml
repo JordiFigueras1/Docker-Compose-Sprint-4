@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   mongodb:
     image: mongo:6.0
@@ -16,17 +17,21 @@ services:
       MONGO_URI: mongodb://mongodb:27017/BBDD
     depends_on:
       - mongodb
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Opcional si necesitas resolución de host
 
   frontend:
-    image: jordi9675/teachme-frontend-v2:latest # Imagen del nuevo frontend actualizado
+    image: jordi9675/teachme-frontend-v2:latest
     container_name: teachme-frontend-v2
     ports:
-      - "51139:51139" # Puerto expuesto del frontend
+      - "51139:51139"
     depends_on:
       - backend
+    environment:
+      DOCKER_USERNAME: jordi9675
+      DOCKER_PASSWORD: idespaja184 # Credenciales incluidas directamente en el archivo
 
 volumes:
   mongodb_data:
     driver: local
-
 
