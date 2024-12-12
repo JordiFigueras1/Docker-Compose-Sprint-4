@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mongodb:
     image: mongo:6.0
@@ -18,10 +20,10 @@ services:
       - mongodb
 
   frontend:
-    image: jordi9675/teachme-frontend-v2:latest
-    container_name: teachme-frontend-v2
+    image: jordi9675/teachme-frontend-v3:v3  # Usar la nueva imagen con la etiqueta v3
+    container_name: teachme-frontend-v3
     ports:
-      - "51139:51139"
+      - "51139:80"  # Usar puerto 80, ya que Nginx sirve la app en este puerto
     depends_on:
       - backend
 
