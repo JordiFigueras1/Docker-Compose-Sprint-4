@@ -4,8 +4,6 @@ services:
     container_name: mongodb
     ports:
       - "27017:27017"
-    mem_limit: 256m
-    mem_reservation: 128m
     volumes:
       - mongodb_data:/data/db
 
@@ -18,8 +16,6 @@ services:
       MONGO_URI: mongodb://mongodb:27017/BBDD
     depends_on:
       - mongodb
-    mem_limit: 256m
-    mem_reservation: 128m
 
   frontend:
     image: jordi9675/teachme-frontend-v2:latest
@@ -28,8 +24,6 @@ services:
       - "51139:51139"
     depends_on:
       - backend
-    mem_limit: 512m
-    mem_reservation: 256m
 
 volumes:
   mongodb_data:
