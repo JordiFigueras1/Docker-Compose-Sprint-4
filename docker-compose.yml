@@ -17,13 +17,14 @@ services:
     depends_on:
       - mongodb
 
-  frontend:
-    image: jordi9675/teachme-frontend-v2:latest
-    container_name: teachme-frontend-v2
-    ports:
-      - "51139:51139"
-    depends_on:
-      - backend
+frontend:
+  image: jordi9675/teachme-frontend-v2:latest
+  container_name: teachme-frontend-v2
+  ports:
+    - "51139:51139"
+  command: flutter build web && flutter serve --release
+  depends_on:
+    - backend
 
 volumes:
   mongodb_data:
